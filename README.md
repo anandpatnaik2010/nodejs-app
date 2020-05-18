@@ -4,7 +4,7 @@
 
 ## Prerequisites
 ```
-a) Kubernetes Cluster -> Deployment of Vue application
+a) Kubernetes Cluster -> Deployment of application
 b) Dockerhub -> save our docker image
 c) Jenkins Machine -> Continuous Integration and Deployment on Kubernetes cluster.
 ```
