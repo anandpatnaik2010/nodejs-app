@@ -37,3 +37,11 @@ variable "public_subnets" {
   description = "A list of public subnets inside the VPC."
   default     = ["172.*.*.0/20", "172.*.*.0/20"]
 }
+
+variable "instance_type" {
+  default = "t2.micro"
+}
+
+variable "ami_name" {
+  default = "ami-04fcc97b5f6edcd89"
+}
