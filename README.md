@@ -10,6 +10,10 @@ c) Jenkins Machine -> Continuous Integration and Deployment on Kubernetes cluste
 ```
 ## Getting Started
 
+## Create Kubernetes Cluster & EC2 machine
+
+Ansible playbook will provision infrastructure and deploy components in Kubernetes Cluster
+
 ### Step: 1
 
 ```
