@@ -12,5 +12,6 @@ RUN npm install
 COPY nodejs/ .
 
 EXPOSE 3000
-CMD [ "node", "./src/app.js" ]
+#CMD [ "node", "./src/app.js" ]
+ENTRYPOINT /bin/sh -c "node ./src/app.js"
 
