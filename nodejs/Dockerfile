@@ -9,7 +9,7 @@ COPY nodejs/package*.json ./
 RUN npm install
 
 # Bundle app source
-COPY . .
+COPY nodejs/ .
 
 EXPOSE 3000
 CMD [ "node", "./src/app.js" ]
