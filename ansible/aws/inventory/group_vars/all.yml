@@ -1,0 +1,13 @@
+# These variables apply to all the resources manipulated under the paraent directory
+# This takes the least precedence.
+# You can override these from 'var' directory inside respective role
+
+# AWS Variables
+clusterName: "nodejs-kube-cluster"
+terraform_dir: ../../terraform
+kubernetes_dir: ../../kubernetes/
+dockerServer: https://index.docker.io/v1/
+dockerUser: "change-me"
+dockerPass: "change-me"
+dockerEmail: "change-me"
+namespace: "nodejs"

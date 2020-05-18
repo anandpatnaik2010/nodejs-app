@@ -1,0 +1,47 @@
+- name: Join worker nodes with Kubernetes control plane
+  command: kubectl apply -f ~/.kube/config-map-aws-auth.yml
+  tags: deploy
+
+- name: Create dev namespace
+  command: kubectl apply -f "{{ kubernetes_dir }}/nodejs-ns.yml"
+  tags: deploy
+
+- name: Create Dockerhub Crentials
+  command: kubectl create secret docker-registry regcred --docker-server="{{ dockerServer }}" --docker-username="{{ dockerUser }}" --docker-password="{{ dockerPass }}" --docker-email="{{ dockerEmail }}"  --namespace="{{ namespace }}"
+  ignore_errors: yes
+  tags: deploy
+
+
+- name: Save output to a file
+  shell: kubectl get secret/regcred --namespace="{{ namespace }}" -o yaml > /tmp/secret.yml
+  tags: deploy
+
+
+- name: Delete old secret
+  command: kubectl delete secret regcred -n  "{{ namespace }}"
+  tags: deploy
+
+
+- name: Change Docker secret file
+  replace:
+    path: /tmp/secret.yml
+    regexp: dockercfg
+    replace: dockerconfigjson
+  tags: deploy
+
+
+- name: Create Dockerhub Credentials for Kubernetes deployment
+  command: kubectl apply -f /tmp/secret.yml -n "{{ namespace }}"
+  tags: deploy
+
+
+- name: Delete local residue files
+  file:
+    path: /tmp/secret.yml
+    state: absent
+  tags: deploy
+
+- name: Deploy Nodejs on Kubernetes
+  command: kubectl apply -f "{{ kubernetes_dir }}/nodejs/" -n "{{ namespace }}"
+  tags: deploy
+

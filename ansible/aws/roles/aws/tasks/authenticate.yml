@@ -1,0 +1,13 @@
+- name: Download aws authenticator
+  get_url: 
+    url: https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator
+    dest: /tmp/
+  tags: create-infra
+ 
+- name: Copy authenticator binary
+  copy:
+    src: /tmp/aws-iam-authenticator
+    dest: /usr/local/bin/aws-iam-authenticator
+    mode: u+rwx,o+x
+    remote_src: yes
+  become: true

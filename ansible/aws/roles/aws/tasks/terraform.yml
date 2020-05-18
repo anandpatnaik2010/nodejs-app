@@ -1,0 +1,13 @@
+- name: Create Nodejs resources on AWS
+  terraform:
+    project_path: '{{ terraform_dir }}'
+    state: present
+  tags: create-infra
+
+- name: Create Kubernetes config file
+  shell: "cd '{{ terraform_dir }}' && terraform output kubeconfig > $HOME/.kube/config"
+  tags: create-infra
+
+- name: Create config-map-aws-auth.yml file 
+  shell: "cd '{{ terraform_dir }}' && terraform output config-map-aws-auth > $HOME/.kube/config-map-aws-auth.yml"
+  tags: create-infra

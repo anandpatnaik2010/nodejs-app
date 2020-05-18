@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nodejs
+    labels:
+        app: frontend
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: frontend
+    template:
+        metadata:
+            labels:
+                app: frontend
+        spec:
+            containers:
+            - name: nodejs
+              image: anandpatnaik/nodejs:test-61c94d2
+              ports:
+              - containerPort: 3000

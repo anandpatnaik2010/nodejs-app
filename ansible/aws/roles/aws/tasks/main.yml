@@ -1,0 +1,7 @@
+---
+- include_tasks: terraform.yml
+- include_tasks: authenticate.yml
+- include_tasks: deploy.yml
+  tags: [deploy]
+#- include_tasks: ingress.yml
+#  tags: [ingress]

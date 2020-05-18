@@ -1,0 +1,14 @@
+- hosts: localhost
+  vars_files:
+    - inventory/group_vars/all.yml
+  tasks:
+    - name: Delete CDP resources on AWS
+      terraform:
+        project_path: '{{ terraform_dir }}' 
+        state: absent
+      tags: deprovision
+    - name: Delete local residue files
+      file:
+        path: ~/.kube/config
+        state: absent
+      tags: deprovision
